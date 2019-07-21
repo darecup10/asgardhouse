@@ -1,0 +1,48 @@
+﻿@import url("https://bootswatch.com/flatly/bootstrap.min.css"); 
+
+footer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar.logo-wrapeer {
+    padding: 15px;
+    display: block;
+    width: 200px;
+    height: 200px;
+    
+}
+
+.navbar-logo {
+    width: 157px;
+    height: 94px;
+    background: url('~/Content/Logo.png') no-repeat center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer {
+    padding: 5px;
+    height: 20%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    flex: 1 1 auto;
+}
+
+.page-title {
+    padding: 15px;
+    font-family: 'Asfalto';
+    font-size: 60px;
+    text-align: center;
+    color: #333;
+}
+
+.main-section {
+    background-image: url('../Content/Cerveza_artesanal.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+
+}
