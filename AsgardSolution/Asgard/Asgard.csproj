@@ -167,6 +167,7 @@
   <ItemGroup>
     <Content Include="Content\Cerveza_artesanal.jpg" />
     <Content Include="Content\Logo.png" />
+    <Content Include="Content\main.jpg" />
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

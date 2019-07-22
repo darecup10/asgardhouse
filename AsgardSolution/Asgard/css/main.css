@@ -1,6 +1,7 @@
-﻿@import url("https://bootswatch.com/flatly/bootstrap.min.css"); 
+﻿@import url("https://bootswatch.com/flatly/bootstrap.min.css");
 
-footer {
+
+.footer {
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -21,6 +22,33 @@ footer {
     background-size: cover;
 }
 
+.orderbutton{
+
+}
+
+.home-numbers {
+    flex-direction: row-reverse;
+    display: flex;
+    padding: 50px;
+}
+
+.home-number {
+    justify-content: space-around; 
+    margin-left: 35px;
+    margin-right: 35px;
+    padding: 16px;
+    text-align: center;
+}
+.home-number div {
+    font-family: 'Dead Kansas';
+    font-size: 45px;
+}   
+
+.home-number p {
+    font-family: 'Maven+Pro';
+    font-size: 30px;
+}
+
 .footer {
     padding: 5px;
     height: 20%;
@@ -37,12 +65,28 @@ footer {
     color: #333;
 }
 
+.page-title-light {
+    padding: 15px;
+    font-family: 'Stencil';
+    font-size: 60px;
+    text-align: center;
+    color: wheat;
+}
+
 .main-section {
-    background-image: url('../Content/Cerveza_artesanal.jpg');
+    background-image: url('../Content/main.jpg');
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 30px;
     margin-bottom: 50px;
     width: 100%;
+    flex: 1;
+}
 
+
+@media (max-width: 668px){
+    .home-number {
+       visibility: hidden;
+    }
 }
