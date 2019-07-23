@@ -1,17 +1,174 @@
-﻿@import url("https://bootswatch.com/flatly/bootstrap.min.css");
+﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    visibility: hidden;
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+
+/* ---------------------------------------------------
+SIDEBAR STYLE
+----------------------------------------------------- */
+
+#sidebar {
+    width: 230px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #fffcf4;    
+    transition: all 0.3s;
+}
+
+    #sidebar.active {
+        margin-left: -230px;
+    }
+
+    #sidebar .sidebar-header {
+        margin: 25px 0px 0px 0px;
+        text-align: center;
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 4.0em;
+        display: block;
+        color: black;
+    }
+
+        #sidebar ul li a:hover {
+            color: #2e2102;
+            background: #fff;
+        }
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before,
+a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+/* ---------------------------------------------------
+CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 230px);
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+    #content.active {
+        width: 100%;
+    }
+/* ---------------------------------------------------
+MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .navbar-btn {
+        visibility: visible;
+        transition: visibility 0.3s;
+    }
+
+    #sidebar {
+        margin-left: -230px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+    #content {
+        width: 100%;
+    }
+
+        #content.active {
+            width: calc(100% - 230px);
+        }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+}
 
 .footer {
     padding-left: 15px;
     padding-right: 15px;
+    padding: 5px;
+    height: 20%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    flex: 1 1 auto;
 }
+
+.header-page {
+    background-image: url('../Content/main.jpg');
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+}
+
+.beer-section {
+    background-color: #fffcf4;    
+    height: 600px;
+    width: 100%;
+}
+
+
+/*.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*position: fixed;*/
+    /*display: block;*/
+    /*z-index: 10;*/
+    /*position: fixed;
+    flex: 1;  
+    width: 200px;
+    background-color: whitesmoke;
+    height: 100%;*/
+}*/
+
+
 
 .navbar.logo-wrapeer {
     padding: 15px;
     display: block;
     width: 200px;
     height: 200px;
-    
 }
 
 .navbar-logo {
@@ -49,13 +206,6 @@
     font-size: 30px;
 }
 
-.footer {
-    padding: 5px;
-    height: 20%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 80%;
-    flex: 1 1 auto;
-}
 
 .page-title {
     padding: 15px;
