@@ -8,9 +8,11 @@ namespace Asgard.Controllers
 {
     public class HomeController : Controller
     {
+        Models.AsgardEntities1 db = new Models.AsgardEntities1();
+
         public ActionResult Index()
         {
-            return View();
+            return View(db.Beers.ToList());
         }
 
         public ActionResult About()

@@ -128,10 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BeerssController.cs" />
     <Compile Include="Controllers\EnvioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +165,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BeersPic\BarleyWine.jpeg" />
+    <Content Include="Content\BeersPic\Bock.png" />
+    <Content Include="Content\BeersPic\Bohemia.jpg" />
+    <Content Include="Content\BeersPic\CreamStout.png" />
+    <Content Include="Content\BeersPic\CuelloNegroStout.jpg" />
+    <Content Include="Content\BeersPic\Epidor.jpg" />
+    <Content Include="Content\BeersPic\EstrellaGalicia.jpg" />
+    <Content Include="Content\BeersPic\Kolsch.jpg" />
+    <Content Include="Content\BeersPic\Pilsen.jpg" />
+    <Content Include="Content\BeersPic\PolarIce.png" />
+    <Content Include="Content\BeersPic\Scotch.jpeg" />
+    <Content Include="Content\BeersPic\Solera.png" />
+    <Content Include="Content\BeersPic\Torobayo.png" />
+    <Content Include="Content\BeersPic\VollDamn.png" />
+    <Content Include="Content\BeersPic\Zulia.jpg" />
     <Content Include="Content\Cerveza_artesanal.jpg" />
     <Content Include="Content\Logo.png" />
     <Content Include="Content\main.jpg" />
@@ -230,9 +245,11 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Shared\_Beers.cshtml" />
+    <Content Include="Views\Shared\_ListBeer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Beerss\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
