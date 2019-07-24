@@ -47,7 +47,7 @@ SIDEBAR STYLE
 
     #sidebar ul li a {
         padding: 10px;
-        font-size: 4.0em;
+        font-size: 1.7em;
         display: block;
         color: black;
     }
@@ -80,8 +80,7 @@ CONTENT STYLE
 ----------------------------------------------------- */
 
 #content {
-    width: calc(100% - 230px);
-    padding: 20px;
+    width: calc(100% - 230px);  
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
