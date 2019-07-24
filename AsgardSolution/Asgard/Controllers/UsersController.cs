@@ -10,112 +10,107 @@ using Asgard.Models;
 
 namespace Asgard.Controllers
 {
-    public class EnvioController : Controller
+    public class UsersController : Controller
     {
         private AsgardEntities1 db = new AsgardEntities1();
 
-        // GET: Envio
+        // GET: Users
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.User);
-            return View(orders.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: Envio/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(user);
         }
 
-        // GET: Envio/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name");
             return View();
         }
 
-        // POST: Envio/Create
+        // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,Date,Adress")] Order order)
+        public ActionResult Create([Bind(Include = "DNI,Name,LastName,Email")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Orders.Add(order);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
-            return View(order);
+            return View(user);
         }
 
-        // GET: Envio/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
-            return View(order);
+            return View(user);
         }
 
-        // POST: Envio/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,Date,Adress")] Order order)
+        public ActionResult Edit([Bind(Include = "DNI,Name,LastName,Email")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
-            return View(order);
+            return View(user);
         }
 
-        // GET: Envio/Delete/5
+        // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(user);
         }
 
-        // POST: Envio/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

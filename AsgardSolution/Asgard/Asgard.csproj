@@ -129,9 +129,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BeerssController.cs" />
-    <Compile Include="Controllers\EnvioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderDetails1Controller.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,13 +232,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Order\Create.cshtml" />
-    <Content Include="Views\Envio\Create.cshtml" />
-    <Content Include="Views\Envio\Delete.cshtml" />
-    <Content Include="Views\Envio\Details.cshtml" />
-    <Content Include="Views\Envio\Edit.cshtml" />
-    <Content Include="Views\Envio\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -246,6 +240,17 @@
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Shared\_Beers.cshtml" />
     <Content Include="Views\Shared\_ListBeer.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\OrderDetails1\Create.cshtml" />
+    <Content Include="Views\OrderDetails1\Delete.cshtml" />
+    <Content Include="Views\OrderDetails1\Details.cshtml" />
+    <Content Include="Views\OrderDetails1\Edit.cshtml" />
+    <Content Include="Views\OrderDetails1\Index.cshtml" />
+    <Content Include="Views\Shared\_User.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

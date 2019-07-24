@@ -15,11 +15,12 @@
     <aside>
         @Html.Partial("_SideBar")
     </aside>
+
     <div id="content">
         @RenderBody()
     </div>
 
-    <footer class="text-center mt-2">
+    <footer class="footer">
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
 
