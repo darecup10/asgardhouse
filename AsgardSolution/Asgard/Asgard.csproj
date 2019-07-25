@@ -184,6 +184,8 @@
     <Content Include="Content\Cerveza_artesanal.jpg" />
     <Content Include="Content\Logo.png" />
     <Content Include="Content\main.jpg" />
+    <Content Include="Content\SocalMedia\Instagram-512.png" />
+    <Content Include="Content\SocalMedia\Twitter-512.png" />
     <Content Include="css\main.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -147,22 +147,6 @@ MEDIAQUERIES
 }
 
 
-/*.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    /*position: fixed;*/
-    /*display: block;*/
-    /*z-index: 10;*/
-    /*position: fixed;
-    flex: 1;  
-    width: 200px;
-    background-color: whitesmoke;
-    height: 100%;*/
-}*/
-
-
-
 .navbar.logo-wrapeer {
     padding: 15px;
     display: block;
@@ -205,7 +189,6 @@ MEDIAQUERIES
     font-size: 30px;
 }
 
-
 .page-title {
     padding: 15px;
     font-family: 'Asfalto';
@@ -214,13 +197,6 @@ MEDIAQUERIES
     color: #333;
 }
 
-.page-title-light {
-    padding: 15px;
-    font-family: 'Stencil';
-    font-size: 60px;
-    text-align: center;
-    color: wheat;
-}
 
 .main-section {
     background-image: url('../Content/main.jpg');

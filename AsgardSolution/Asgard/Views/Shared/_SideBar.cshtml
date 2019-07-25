@@ -1,22 +1,37 @@
 ﻿<nav id="sidebar">
-    <div class="sidebar-header">
-        <img src="~/Content/Logo.png" width="110" class="sidebar-logo""/>      
+    <div class="sidebar-header">       
+        <a href="#Home">
+            <img src="~/Content/Logo.png" width="110" class="sidebar-logo" />
+        </a>
     </div>
     <ul class="list-unstyled components text-center">
-        <li class="active">
-            <a href="Orders/Create">Orders</a>
+        <li>
+            @Html.ActionLink("Home", "Index", "Home")
+            @*  <a href="#home">Orders</a>*@
         </li>
         <li>
-            <a href="#menu">Our Beers</a>
+        <li>
+            @Html.ActionLink("Orders", "Create", "Orders")
+            @*<a href="#Orders/Create">Orders</a>*@
         </li>
         <li>
-            <a href="#menu">About Us</a>
+            <a href="#OurBeers">Our Beers</a>
         </li>
         <li>
-            <a href="#">Instagram</a>
+            <a href="#OurBeers">About Us</a>
         </li>
         <li>
-            <a href="#">Twiter</a>
+            <hr />
+        </li>
+        <li>
+            <a href="https://www.instagram.com/?hl=es-la">
+                <img src="~/Content/SocalMedia/Twitter-512.png" width="45" />
+            </a>
+        </li>
+        <li>
+            <a href="https://twitter.com/">
+                <img src="~/Content/SocalMedia/Instagram-512.png" width="45" />
+            </a>
         </li>
     </ul>
 </nav>
