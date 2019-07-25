@@ -162,8 +162,13 @@ MEDIAQUERIES
     background-size: cover;
 }
 
-.orderbutton{
-
+.btn-outline-secondary {
+    color: #caa963;
+    border-color: #caa963;
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    
 }
 
 .home-numbers {
