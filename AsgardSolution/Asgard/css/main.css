@@ -166,6 +166,23 @@ MEDIAQUERIES
     height: 200px;
 }
 
+.navbar-logo {
+    width: 157px;
+    height: 94px;
+    background: url('~/Content/Logo.png') no-repeat center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn-outline-secondary {
+    color: #caa963;
+    border-color: #caa963;
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    
+}
+
 .home-numbers {
     flex-direction: row-reverse;
     display: flex;
