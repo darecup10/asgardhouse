@@ -48,16 +48,19 @@ namespace Asgard.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,Date,Adress")] Order order)
+        public ActionResult Create([Bind(Include = "ID,UserDNI,Date,Address")] Order order,
+            [Bind(Include = "DNI,Name,LastName,Email")] User user)
         {
             if (ModelState.IsValid)
             {
+                db.Users.Add(user);
+                order.User = user;
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
+            //ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
             return View(order);
         }
 
@@ -73,7 +76,7 @@ namespace Asgard.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserDNI);
             return View(order);
         }
 
@@ -82,7 +85,7 @@ namespace Asgard.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,Date,Adress")] Order order)
+        public ActionResult Edit([Bind(Include = "ID,UserID,Date,Address")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +93,7 @@ namespace Asgard.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
+            ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserDNI);
             return View(order);
         }
 

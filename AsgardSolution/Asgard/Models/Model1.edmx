@@ -23,9 +23,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserDNI" Type="int" Nullable="false" />
           <Property Name="Date" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Adress" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -39,6 +39,11 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
           <Property Name="BeerID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Asgard.dbo.Table_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Table_1">
+          <Property Name="ssss" Type="nchar" MaxLength="10" />
+        </EntityType>-->
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="DNI" />
@@ -48,6 +53,18 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserDNI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderDetails_Beer">
           <End Role="Beer" Type="Self.Beer" Multiplicity="1" />
           <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
@@ -69,18 +86,6 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
             </Principal>
             <Dependent Role="OrderDetails">
               <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pedido_Client">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="DNI" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -95,6 +100,10 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
     [OrderDetails].[Quantity] AS [Quantity]
     FROM [dbo].[OrderDetails] AS [OrderDetails]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_Beer" Association="Self.FK_OrderDetails_Beer">
             <End Role="Beer" EntitySet="Beer" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
@@ -103,39 +112,63 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pedido_Client" Association="Self.FK_Pedido_Client">
-            <End Role="User" EntitySet="User" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AsgardModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AsgardEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beers" EntityType="AsgardModel1.Beer" />
+          <EntitySet Name="Orders" EntityType="AsgardModel1.Order" />
+          <EntitySet Name="Users" EntityType="AsgardModel1.User" />
+          <EntitySet Name="OrderDetails" EntityType="AsgardModel1.OrderDetail" />
+          <AssociationSet Name="FK_OrderDetails_Beer" Association="AsgardModel1.FK_OrderDetails_Beer">
+            <End Role="Beer" EntitySet="Beers" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="AsgardModel1.FK_Order_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="AsgardModel1.FK_OrderDetails_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Beer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Brand" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ABV" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Beer" FromRole="Beer" ToRole="OrderDetails" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="AsgardModel1.FK_OrderDetails_Beer" FromRole="Beer" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Adress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetails" />
-          <NavigationProperty Name="User" Relationship="AsgardModel1.FK_Pedido_Client" FromRole="Order" ToRole="User" />
+          <Property Name="UserDNI" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="AsgardModel1.FK_Order_User" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrderDetails" Relationship="AsgardModel1.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="AsgardModel1.FK_Order_User" FromRole="User" ToRole="Order" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -146,62 +179,22 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="BeerID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Beer" Relationship="Self.FK_OrderDetails_Beer" FromRole="OrderDetails" ToRole="Beer" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
+          <NavigationProperty Name="Beer" Relationship="AsgardModel1.FK_OrderDetails_Beer" FromRole="OrderDetail" ToRole="Beer" />
+          <NavigationProperty Name="Order" Relationship="AsgardModel1.FK_OrderDetails_Order" FromRole="OrderDetail" ToRole="Order" />
         </EntityType>
         <Association Name="FK_OrderDetails_Beer">
-          <End Role="Beer" Type="Self.Beer" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <End Type="AsgardModel1.Beer" Role="Beer" Multiplicity="1" />
+          <End Type="AsgardModel1.OrderDetail" Role="OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Beer">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="OrderDetails">
+            <Dependent Role="OrderDetail">
               <PropertyRef Name="BeerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderDetails_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="AsgardEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Beers" EntityType="Self.Beer" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
-          <AssociationSet Name="FK_OrderDetails_Beer" Association="Self.FK_OrderDetails_Beer">
-            <End Role="Beer" EntitySet="Beers" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="AsgardModel1.User" />
-          <AssociationSet Name="FK_Pedido_Client" Association="AsgardModel1.FK_Pedido_Client">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="DNI" />
-          </Key>
-          <Property Name="DNI" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="AsgardModel1.FK_Pedido_Client" FromRole="User" ToRole="Order" />
-        </EntityType>
-        <Association Name="FK_Pedido_Client">
+        <Association Name="FK_Order_User">
           <End Type="AsgardModel1.User" Role="User" Multiplicity="1" />
           <End Type="AsgardModel1.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -209,11 +202,23 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
               <PropertyRef Name="DNI" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="UserID" />
+              <PropertyRef Name="UserDNI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_OrderDetails_Order">
+          <End Type="AsgardModel1.Order" Role="Order" Multiplicity="1" />
+          <End Type="AsgardModel1.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -222,33 +227,24 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
           <EntitySetMapping Name="Beers">
             <EntityTypeMapping TypeName="AsgardModel1.Beer">
               <MappingFragment StoreEntitySet="Beer">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ABV" ColumnName="ABV" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="ABV" ColumnName="ABV" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="AsgardModel1.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="AsgardModel1.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="BeerID" ColumnName="BeerID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UserDNI" ColumnName="UserDNI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -259,6 +255,15 @@ warning 6002: The table/view 'Asgard.dbo.OrderDetails' does not have a primary k
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="AsgardModel1.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BeerID" ColumnName="BeerID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
