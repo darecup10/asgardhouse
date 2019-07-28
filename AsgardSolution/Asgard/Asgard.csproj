@@ -128,9 +128,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BeerssController.cs" />
+    <Compile Include="Controllers\BeersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderDetails1Controller.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +166,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Beer-Main.jpg" />
     <Content Include="Content\BeersPic\BarleyWine.jpeg" />
     <Content Include="Content\BeersPic\Bock.png" />
     <Content Include="Content\BeersPic\Bohemia.jpg" />
@@ -247,17 +248,17 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\OrderDetails1\Create.cshtml" />
-    <Content Include="Views\OrderDetails1\Delete.cshtml" />
-    <Content Include="Views\OrderDetails1\Details.cshtml" />
-    <Content Include="Views\OrderDetails1\Edit.cshtml" />
-    <Content Include="Views\OrderDetails1\Index.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
     <Content Include="Views\Shared\_User.cshtml" />
     <Content Include="Views\Shared\_OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Beerss\" />
+    <Folder Include="Views\Beers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
