@@ -30,19 +30,30 @@ namespace Asgard.Controllers
             }
 
             var orderDetails = db.OrderDetails.Where(o => o.OrderID == id);
-            
+            Order order = db.Orders.Find(id);
             if (orderDetails == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.OrderID = order.ID;
             return View(orderDetails.ToList());
         }
 
         // GET: OrderDetails1/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+             
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
             ViewBag.BeerID = new SelectList(db.Beers, "ID", "Name");
-            ViewBag.OrderID = new SelectList(db.Orders, "ID", "Date");
+            ViewBag.OrderID = order.ID;
             return View();
         }
 
@@ -54,10 +65,10 @@ namespace Asgard.Controllers
         public ActionResult Create([Bind(Include = "OrderID,BeerID,Quantity")] OrderDetail orderDetail)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 db.OrderDetails.Add(orderDetail);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = orderDetail.OrderID});
             }
 
             ViewBag.BeerID = new SelectList(db.Beers, "ID", "Name", orderDetail.BeerID);
@@ -93,7 +104,7 @@ namespace Asgard.Controllers
             {
                 db.Entry(orderDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = orderDetail.OrderID });
             }
             ViewBag.BeerID = new SelectList(db.Beers, "ID", "Name", orderDetail.BeerID);
             ViewBag.OrderID = new SelectList(db.Orders, "ID", "Date", orderDetail.OrderID);
@@ -123,7 +134,7 @@ namespace Asgard.Controllers
             OrderDetail orderDetail = db.OrderDetails.Find(id);
             db.OrderDetails.Remove(orderDetail);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = orderDetail.OrderID });
         }
 
         protected override void Dispose(bool disposing)

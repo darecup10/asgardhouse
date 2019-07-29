@@ -14,6 +14,7 @@ namespace Asgard.Models
     
     public partial class OrderDetail
     {
+        public int ID { get; set; }
         public int OrderID { get; set; }
         public int BeerID { get; set; }
         public int Quantity { get; set; }

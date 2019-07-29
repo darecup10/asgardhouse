@@ -17,12 +17,7 @@ namespace Asgard.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            //var orderDetails = db.OrderDetails.Include(o => o.Beer).Include(o => o.Order);
-            //return View(orderDetails.ToList());
-
             var orders = db.Orders.Include(o => o.User).Include(o => o.OrderDetails);
-            //orders = db.Orders.Include(o => o.OrderDetails);
-            //OrderedEnumerableRowCollection = 
             return View(orders.ToList());
         }
 
@@ -59,6 +54,7 @@ namespace Asgard.Controllers
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
+                order.UserDNI = user.DNI;
                 order.User = user;
                 db.Orders.Add(order);
                 db.SaveChanges();
@@ -90,7 +86,7 @@ namespace Asgard.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,Date,Address")] Order order)
+        public ActionResult Edit([Bind(Include = "ID,UserDNI,Date,Address")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +118,15 @@ namespace Asgard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            IEnumerable<OrderDetail> orderDetailsList = db.OrderDetails.Where(OrderDetails => OrderDetails.OrderID == id);
+            foreach (var item in orderDetailsList)
+            {
+                var orderDetails = db.OrderDetails.Find(item.ID);
+                db.OrderDetails.Remove(orderDetails);
+            }
+
             Order order = db.Orders.Find(id);
+            order.OrderDetails.Clear();
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
