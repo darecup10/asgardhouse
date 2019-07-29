@@ -62,10 +62,16 @@ namespace Asgard.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,BeerID,Quantity")] OrderDetail orderDetail)
+        public ActionResult Create([Bind(Include = "ID, OrderID,BeerID,Quantity")] OrderDetail orderDetail, int id)
         {
             if (ModelState.IsValid)
-            {                
+            {
+                var order = db.Orders.Find(id);
+                var beer = db.Beers.Find(orderDetail.BeerID);
+
+                orderDetail.OrderID = id;
+                orderDetail.Order = order;
+                orderDetail.Beer = beer;
                 db.OrderDetails.Add(orderDetail);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = orderDetail.OrderID});

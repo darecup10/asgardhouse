@@ -60,8 +60,6 @@ namespace Asgard.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            //ViewBag.UserID = new SelectList(db.Users, "DNI", "Name", order.UserID);
             return View(order);
         }
 
