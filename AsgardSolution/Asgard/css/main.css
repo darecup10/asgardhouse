@@ -2,25 +2,18 @@
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sacramento&display=swap');
 
-.mobile-navbar {
+/*.mobile-navbar {
     display: none;
-}
+}*/
 
-.navbar {
+/*.navbar {
     padding: 15px 10px;
     background: #fff;
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    visibility: hidden;
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
+}*/
 
 .page-title {
     padding: 25px;
@@ -99,27 +92,28 @@ SIDEBAR STYLE
             background: #fff;
         }
 
-a[data-toggle="collapse"] {
-    position: relative;
+.custom-navbar {
+    display: none;
+    background-color: #fffcf4 !important;
+    padding: 15px 10px;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
+    .custom-navbar ul.components {        
+        padding: 10px 0;
+    }
 
-a[aria-expanded="false"]::before,
-a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
-}
+    .custom-navbar .navbar-toggler {
+        margin-left: 10px;
+    }
 
-a[aria-expanded="true"]::before {
-    content: '\e260';
-}
-
-/* ---------------------------------------------------
-CONTENT STYLE
------------------------------------------------------ */
+    .custom-navbar ul li a {
+        color: black;
+        margin: 10px;
+        display: block;
+        font-size: 1.3em;
+    }
 
 #content {
     align-items: flex-start;
@@ -135,49 +129,6 @@ CONTENT STYLE
     #content.active {
         width: 100%;
     }
-/* ---------------------------------------------------
-MEDIAQUERIES
------------------------------------------------------ */
-
-@media (max-width: 768px) {
-
-    .navbar-btn {
-        visibility: visible;
-        transition: visibility 0.3s;
-    }
-
-    .home__numbers {
-        visibility: hidden;
-    }
-
-    .marquee {
-        visibility: hidden;
-    }
-
-    #sidebar {
-        margin-left: -230px;
-    }
-
-        #sidebar.active {
-            margin-left: 0;
-        }
-
-    #content {
-        width: 100%;
-    }
-
-        #content.active {
-            width: calc(100% - 230px);
-        }
-
-    #sidebarCollapse span {
-        display: none;
-    }
-
-    .mobile-navbar {
-        display: block;
-    }
-}
 
 .btn-outline-secondary {
     color: #353637;
@@ -189,7 +140,6 @@ MEDIAQUERIES
     font-size: 27px;
     opacity: 0.7;
 }
-
 
 .btn-outline-secondary:hover {
         background-color: #6c6654;
@@ -211,6 +161,7 @@ MEDIAQUERIES
     padding: 16px;
     text-align: center;
 }
+
 .home__number div {
     font-family: 'Fredericka the Great', cursive;
     font-size: 50px;
@@ -232,4 +183,39 @@ MEDIAQUERIES
     flex: 1;
 }
 
+@media (max-width: 768px) {
+
+    .home__numbers {
+        visibility: hidden;
+    }
+
+    .marquee {
+        visibility: hidden;
+    }
+
+    #sidebar {
+        margin-left: -230px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+    #content {
+        width: 100%;
+        top: 67px;
+    }
+
+        #content.active {
+            width: calc(100% - 230px);            
+        }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+
+    .custom-navbar {        
+        display: block;
+    }
+}
 
