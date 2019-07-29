@@ -2,8 +2,8 @@
 <link href="~/css/beers.css" rel="stylesheet" />
 <script src="~/Scripts/search.js"></script>
 
-<input class="form-control" type="text" id="searchInput" onkeyup="search()" placeholder="Search by name.." style="width: auto; margin: 20px">
-<table class="table table-responsive" align="center" >
+<input class="form-control" type="text" id="searchInput" onkeyup="search()" placeholder="Search by brand.." style="width: auto; margin: 20px">
+<table class="table table-responsive" id="beerTable" align="center" >
 @foreach (var item in Model) {
     <tr>
         <td class="image" align="center">
