@@ -17,7 +17,12 @@ namespace Asgard.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.User);
+            //var orderDetails = db.OrderDetails.Include(o => o.Beer).Include(o => o.Order);
+            //return View(orderDetails.ToList());
+
+            var orders = db.Orders.Include(o => o.User).Include(o => o.OrderDetails);
+            //orders = db.Orders.Include(o => o.OrderDetails);
+            //OrderedEnumerableRowCollection = 
             return View(orders.ToList());
         }
 
