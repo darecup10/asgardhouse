@@ -2,24 +2,22 @@
 <link href="~/css/beers.css" rel="stylesheet" />
 <script src="~/Scripts/search.js"></script>
 
-
 <input class="form-control" type="text" id="searchInput" onkeyup="search()" placeholder="Search by name.." style="width: auto; margin: 20px">
-<table class="table beer-section" id="beerTable" align="center" >
+<table class="table table-responsive" align="center" >
 @foreach (var item in Model) {
     <tr>
-        <td class="imge" align="center">
-            <img src="@Url.Content(item.Image)" height="200" position="center" />
+        <td class="image" align="center">
+            <img src="@Url.Content(item.Image)" height="300" position="center" />
         </td>
         <td class="beer-properties">
             
-            <p id="Beername"> @Html.DisplayFor(modelItem => item.Name)</p>
-            <p><div>Fabricante:</div> @Html.DisplayFor(modelItem => item.Brand)</p>
+            <p style="font-size:18px; font-weight: bold;"> @Html.DisplayFor(modelItem => item.Name)</p>
+            <p><div>Brand:</div> @Html.DisplayFor(modelItem => item.Brand)</p>
             <p><div>Color:</div> @Html.DisplayFor(modelItem => item.Type)</p>
-            <p><div>Origen:</div> @Html.DisplayFor(modelItem => item.Country)</p>
+            <p><div>Country:</div> @Html.DisplayFor(modelItem => item.Country)</p>
             <p><div>ABV:</div> @Html.DisplayFor(modelItem => item.ABV)</p>
-            <p><div>Precio:</div> $@Html.DisplayFor(modelItem => item.Price)</p>
+            <p><div>Price:</div> $@Html.DisplayFor(modelItem => item.Price)</p>
         </td>
     </tr>
 }
-
 </table>

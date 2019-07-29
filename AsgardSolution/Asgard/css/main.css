@@ -1,4 +1,6 @@
 ﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sacramento&display=swap');
 
 .mobile-navbar {
     display: none;
@@ -21,11 +23,10 @@
 }
 
 .page-title {
-    padding: 15px;
-    font-family: 'Asfalto';
-    font-size: 60px;
-    text-align: left;
-    color: #333;
+    padding: 25px;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 80px;
+    text-align: center;
 }
 
 .footer {
@@ -39,11 +40,12 @@
 }
 
 .header-page {
-    background-image: url('../Content/main.jpg');
+    background-image: url('../Content/Beer-Main.png');
     height: 600px;
     width: 100%;
     background-size: cover;
-    justify-content: center;
+    -ms-align-content: inherit;
+    -webkit-align-content: inherit;
 }
 
 .header-button {
@@ -120,7 +122,9 @@ CONTENT STYLE
 ----------------------------------------------------- */
 
 #content {
-    width: calc(100% - 230px);  
+    align-items: flex-start;
+    align-content: flex-start;
+    width: calc(100% - 230px);
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -136,6 +140,19 @@ MEDIAQUERIES
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
+
+    .navbar-btn {
+        visibility: visible;
+        transition: visibility 0.3s;
+    }
+
+    .home__numbers {
+        visibility: hidden;
+    }
+
+    .marquee {
+        visibility: hidden;
+    }
 
     #sidebar {
         margin-left: -230px;
@@ -163,36 +180,46 @@ MEDIAQUERIES
 }
 
 .btn-outline-secondary {
-    color: #caa963;
-    border-color: #caa963;
+    color: #353637;
+    border-color: #353637;
+    background-color: #b5af98;
     display: block;
     max-width: 300px;
     margin: auto;
-    
+    font-size: 27px;
+    opacity: 0.7;
 }
 
-.home-numbers {
+
+.btn-outline-secondary:hover {
+        background-color: #6c6654;
+    }
+
+.home__numbers {
     flex-direction: row-reverse;
     display: flex;
     padding: 50px;
+    justify-content: center;
+    text-shadow: 4px 6px 4px black;
+    color: #eff1f4;
 }
 
-.home-number {
-    justify-content: space-around; 
+.home__number {
+    justify-content: space-around;
     margin-left: 35px;
     margin-right: 35px;
     padding: 16px;
     text-align: center;
 }
-.home-number div {
-    font-family: 'Dead Kansas';
-    font-size: 45px;
-}   
+.home__number div {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 50px;
+ }
 
-.home-number p {
-    font-family: 'Maven+Pro';
-    font-size: 30px;
-}
+.home__number p {
+        font-family: 'Sacramento', cursive;
+        font-size: 45px;
+    }
 
 .main-section {
     background-image: url('../Content/main.jpg');
@@ -206,8 +233,3 @@ MEDIAQUERIES
 }
 
 
-@media (max-width: 668px){
-    .home-number {
-       visibility: hidden;
-    }
-}
