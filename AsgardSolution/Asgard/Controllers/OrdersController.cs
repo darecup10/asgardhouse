@@ -53,11 +53,11 @@ namespace Asgard.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                order.UserDNI = user.DNI;
-                order.User = user;
-                db.Orders.Add(order);
-                db.SaveChanges();
+                db.Users.Add(user); // Add user to User DataBase
+                order.UserDNI = user.DNI; // Connect User with Order
+                order.User = user; // Add User object to Order
+                db.Orders.Add(order); // Add order to Order database
+                db.SaveChanges(); // Save Changes
                 return RedirectToAction("Index");
             }
             return View(order);
@@ -116,14 +116,18 @@ namespace Asgard.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Get all OrderDetails of the Order
             IEnumerable<OrderDetail> orderDetailsList = db.OrderDetails.Where(OrderDetails => OrderDetails.OrderID == id);
+
+            //Remove Order details related to the order
             foreach (var item in orderDetailsList)
             {
                 var orderDetails = db.OrderDetails.Find(item.ID);
                 db.OrderDetails.Remove(orderDetails);
             }
 
-            Order order = db.Orders.Find(id);
+            // get order object from database
+            Order order = db.Orders.Find(id);            
             order.OrderDetails.Clear();
             db.Orders.Remove(order);
             db.SaveChanges();
