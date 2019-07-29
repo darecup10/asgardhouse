@@ -1,13 +1,12 @@
 ﻿<nav id="sidebar">
-    <div class="sidebar-header">       
-        <a href="#Home">
+    <div class="sidebar-header">
+        <a href="/Home/Index#Home">
             <img src="~/Content/Logo.png" width="110" class="sidebar-logo" />
         </a>
     </div>
     <ul class="list-unstyled components text-center">
         <li>
             <a href="/Home/Index#Home">Home</a>
-            @*<a href="#Home">Home</a>*@
         </li>
         <li>
         <li>
@@ -15,10 +14,6 @@
         </li>
         <li>
             <a href="/Home/Index#OurBeers">Our Beers</a>
-            @*<a href="#OurBeers">Our Beers</a>*@
-        </li>
-        <li>
-            <a href="">About Us</a>
         </li>
         <li>
             <hr />
@@ -36,42 +31,15 @@
     </ul>
 </nav>
 
-
-@*<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse flex-column" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Hidden brand</a>
-            <ul class="navbar-nav flex-column mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-        </div>
-    </nav>*@
-
-@*<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse flex-column">
-            <div>
-                <img src="~/Content/Logo.png" width="90" />
-            </div>
-            <ul class="nav navbar-nav flex-column">
-                <li class="my-2">
-                    @Html.ActionLink("Home", "Index", "Home")
-                </li>
-                <li class="my-2">
-                    @Html.ActionLink("Ver ordenes", "Index", "Envio")
-                </li>
-                <li class="my-2">
-                    @Html.ActionLink("Users", "Index", "Users")
-                </li>
-            </ul>
-        </div>
-    </nav>*@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mobile-navbar">    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav ml-auto">
+            <li><a href="/Home/Index#Home">Home</a></li>           
+            <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+            <li><a href="/Home/Index#OurBeers">Our Beers</a></li>
+        </ul>
+    </div>
+</nav>

@@ -1,5 +1,9 @@
 ﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+.mobile-navbar {
+    display: none;
+}
+
 .navbar {
     padding: 15px 10px;
     background: #fff;
@@ -49,7 +53,7 @@
 
 .beer-section {
     background-color: #fffcf4;
-    height: 600px;
+    height: 100%;
     width: 100%;
 }
 
@@ -133,11 +137,6 @@ MEDIAQUERIES
 
 @media (max-width: 768px) {
 
-    .navbar-btn {
-        visibility: visible;
-        transition: visibility 0.3s;
-    }
-
     #sidebar {
         margin-left: -230px;
     }
@@ -157,22 +156,10 @@ MEDIAQUERIES
     #sidebarCollapse span {
         display: none;
     }
-}
 
-
-.navbar.logo-wrapeer {
-    padding: 15px;
-    display: block;
-    width: 200px;
-    height: 200px;
-}
-
-.navbar-logo {
-    width: 157px;
-    height: 94px;
-    background: url('~/Content/Logo.png') no-repeat center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    .mobile-navbar {
+        display: block;
+    }
 }
 
 .btn-outline-secondary {
