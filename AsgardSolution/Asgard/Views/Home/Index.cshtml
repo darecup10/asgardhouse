@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Asgard.Models.Beer>
+
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,10 +9,26 @@
     <div class="container-fluid">
         <div class="row">
             <div class="header-page content">
-                <h1 class="display-4 page-title">Asgard House</h1>     
+                <h1 class="display-4 page-title" style="color: #fff;">Asgard House</h1>
                 <div class="header-button">
-                    <button type="button" class="btn btn-outline-secondary">Ordernar!</button>
-                </div>             
+                    <button type="button" class="btn btn-outline-secondary">Order Now!</button>
+                </div>
+                <div class="home__numbers">
+                    <div class="home__number">
+                        <div>6</div>
+                        <p>Countries</p>
+                    </div>
+                    <div class="home__number">
+                        <div>8</div>
+                        <p>Cities</p>
+                    </div>
+                    <div class="home__number">
+                        <div>20</div>
+                        <p>Franchises</p>
+                    </div>
+                </div>
+                <div class="marquee"> <marquee bgcolor=" #b5af98" style="opacity: 0.68">she/he ask me for a proof of love and i gave her/him my beer</marquee></div>
+               
             </div>
         </div>
     </div>
@@ -20,8 +37,8 @@
 <section id="OurBeers">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="beer-section">  
-                <h1 class="display-4 page-title">Nuestras Cervezas</h1 >
+            <div class="beer-section">
+                <h1 class="display-4 page-title">Our Beers</h1>
                 @Html.Partial("_ListBeer", Model)
             </div>
         </div>
