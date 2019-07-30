@@ -1,16 +1,17 @@
 ﻿@model Asgard.Models.OrderDetail
-
+<link href="~/css/mainmenu.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="Mainmenu" style="color: #ffc44a">Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h4>Are you sure you want to delete this?</h4>
 <div>
     <h4>Order Detail</h4>
     <hr />
-    <dl class="dl-horizontal">
+
+    <dl class="form-group">
         <dt>
             @Html.DisplayNameFor(model => model.Order.Date)
         </dt>
@@ -40,9 +41,13 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Details")
-        </div>
+        <div class="form-group">
+            <div>
+                <input type="submit" value="Delete" class="btn btn-default" id="mainbtn" />
+
+                @Html.ActionLink("Back to List", "Details")
+            </div>
+
     }
+        </div>
 </div>

@@ -190,6 +190,7 @@
     <Content Include="Content\SocalMedia\Twitter-512.png" />
     <Content Include="css\beers.css" />
     <Content Include="css\main.css" />
+    <Content Include="css\mainmenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

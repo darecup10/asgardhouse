@@ -1,51 +1,55 @@
 ﻿@model IEnumerable<Asgard.Models.Order>
-
+<link href="~/css/mainmenu.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
 
-<h2 class="display-4 page-title">Index</h2>
-<div style="float: left; padding: 15px ">    
-    <input type="button" class="btn btn-outline-secondary" value="Create" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
+<h2  class="Mainmenu" style="color: #ffc44a; text-align: center;">Orders</h2>
+<div class="form-group">    
+    <input type="button" class="btn btn-outline-secondary" id="mainbtn" value="Create new one" onclick="@("window.location.href='" + @Url.Action("Create", "Orders")+ "'");" />
 </div>
 
-<table class="table">
-    <tr>
-        <th style="width: 100px">
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th style="width: 200px">
-            @Html.DisplayNameFor(model => model.User.Name)
-        </th>
-        <th style="width: 200px">
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-    </tr>
+<div>
+    <table class="table">
+        <tr>
+            <th style="width: 100px">
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th style="width: 200px">
+                @Html.DisplayNameFor(model => model.User.Name)
+            </th>
+            <th style="width: 200px">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+        </tr>
 
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", "OrderDetails", new { id = item.ID }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", "OrderDetails", new { id = item.ID }, null) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+
+    @Html.ActionLink("Back Home", "Index", "Home")
+</div>
