@@ -11,7 +11,8 @@ namespace Asgard.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,14 @@ namespace Asgard.Models
         {
             this.Orders = new HashSet<Order>();
         }
-    
+
+        [Required(ErrorMessage = "Please, insert your DNI")]
         public int DNI { get; set; }
+        [Required(ErrorMessage = "Please, insert a name")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Please, insert a lastname")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Please, insert an email")]
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,7 +11,8 @@ namespace Asgard.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,9 @@ namespace Asgard.Models
     
         public int ID { get; set; }
         public int UserDNI { get; set; }
+        [Required(ErrorMessage = "Please, insert a date")]
         public string Date { get; set; }
+        [Required(ErrorMessage = "Please, insert an address")]
         public string Address { get; set; }
     
         public virtual User User { get; set; }
